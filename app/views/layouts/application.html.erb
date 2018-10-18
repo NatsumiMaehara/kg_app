@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>KouGood</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+
+  <body>
+    <div class="logo-area">
+      <div class="logo">
+        <% if @current_user %>
+        <!--ログイン後画面-->
+          <li>
+          <%= link_to(@current_user.nickname, "/users/#{@current_user.id}") %>
+          </li>
+          <%= link_to("KouGood", "/posts/index") %>
+        <% else %>
+        <!--ログイン前画面-->
+          <%= link_to("KouGood", "/") %>
+        <% end %>
+      </div>
+        
+        <ul class="sign">
+          <% if @current_user %>
+            <li>
+               <%= link_to("ログアウト","/logout",{method: :post}) %>
+            </li> 
+            <li>
+               <%= link_to(@current_user.nickname, "/users/#{@current_user.id}") %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to("signin", "/login") %>
+            </li>
+            <li>
+              <%= link_to("新規登録", "/signup") %>
+            </li>
+          <% end %>
+        </ul>
+    </div>
+    <header>
+      <ul class="header-menus">
+        
+         <% if @current_user %>
+
+          <li>
+            <%= link_to("KOUGOODとは(規約)", "/agreement") %>
+          </li>
+          <li>
+            <%= link_to("記事を書く", "/blogs/new") %>
+          </li>
+          <li>
+            <%= link_to("マイページ", "/users/#{@current_user.id}") %>
+          </li>
+           <li>
+            <%= link_to("ブログ一覧", "/blogs/blogsindex") %>
+          </li>
+          <li>
+            <%= link_to("友達一覧", "/friends/index") %>
+          </li>
+          <li>
+            <%= link_to("メッセージ", "//") %>
+          </li>
+          <li>
+            <%= link_to("コメントが付いた記事", "//") %>
+          </li>
+          <li>
+            <%= link_to("お気に入りの記事", "//") %>
+          </li>
+          <li>
+            <%= link_to("イベント情報", "/events/index") %>
+          </li>
+          <li>
+            <%= link_to("ユーザー一覧", "/users/index") %>
+          </li>
+          <li>
+            <%= link_to("おすすめスポット", "//") %>
+          </li>
+          <li>
+            <%= link_to("お問い合わせ", "//") %>
+          </li>
+          <li>
+            <%= link_to("Q&A", "/q%a") %>
+          </li>
+          <li>
+            <%= link_to("お知らせ", "/info") %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to("KOUGOODとは(規約)", "/agreement") %>
+          </li>
+          <li>
+            <%= link_to("ブログ一覧", "/blogs/blogsindex") %>
+          </li>
+          <li>
+            <%= link_to("ユーザー一覧", "/users/index") %>
+          </li>
+          <li>
+            <%= link_to("イベント情報", "/events/index") %>
+          </li>
+          <li>
+            <%= link_to("おすすめスポット", "//") %>
+          </li>
+          <li>
+            <%= link_to("お問い合わせ", "//") %>
+          </li>
+          <li>
+            <%= link_to("Q&A", "/q&a") %>
+          </li>
+          <li>
+            <%= link_to("お知らせ", "/info") %>
+          </li>
+        <% end %>
+      </ul>
+    </header>
+
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+    
+    <%= yield %>
+  </body>
+</html>

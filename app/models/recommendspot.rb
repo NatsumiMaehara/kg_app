@@ -1,0 +1,2 @@
+class Recommendspot < ApplicationRecord
+end

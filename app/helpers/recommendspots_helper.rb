@@ -1,0 +1,2 @@
+module RecommendspotsHelper
+end

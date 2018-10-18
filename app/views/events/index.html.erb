@@ -1,0 +1,15 @@
+<div class="main events-index">
+  <div class="container">
+     <h1 class="events-hedding">イベント情報</h1>
+     　<ul class="events-menus">
+     　    <li>
+            <%= link_to("イベントを作成する", "/events/new") %>
+          </li>
+     　</ul>
+    <% @events.each do |e| %>
+      <div class="events-index-item">
+        <%= link_to(e.content, "/events/#{e.id}") %>
+      </div>
+    <% end %>
+  </div>
+</div>

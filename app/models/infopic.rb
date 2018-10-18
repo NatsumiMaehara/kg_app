@@ -1,0 +1,2 @@
+class Infopic < ApplicationRecord
+end

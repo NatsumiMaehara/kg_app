@@ -1,0 +1,22 @@
+
+<div class="main blogs-index">
+  <div class="container">
+    <% @blogs.each do |b| %>
+      <div class="blogs-index-item">
+        <div class="blog-left">
+   <!--ここにアイコン画像の表示を書く-->
+        </div>
+        <div class="blog-right">
+          <div class="blog-user-nickname">
+             <%= link_to(b.user.nickname, "/users/#{b.user.id}") %>
+          </div>
+          <%= link_to(b.content, "/blogs/#{b.id}") %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+<!--ユーザー全体のブログ一覧-->
+

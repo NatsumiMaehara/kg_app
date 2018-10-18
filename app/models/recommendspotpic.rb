@@ -1,0 +1,2 @@
+class Recommendspotpic < ApplicationRecord
+end

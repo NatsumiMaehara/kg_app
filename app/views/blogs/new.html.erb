@@ -1,0 +1,13 @@
+<div class="main blogs-new">
+  <div class="container">
+    <h1 class="form-heading">記事を書く</h1>
+    <%= form_tag("/blogs/create") do %>
+    <div class="form">
+      <div class="form-body">
+        <textarea name="content"></textarea>
+        <input type="submit" value="公開">
+      </div>
+     </div>
+    <% end %>
+  </div>
+</div>

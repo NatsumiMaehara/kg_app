@@ -1,0 +1,11 @@
+<div class="main blogs-index">
+  <div class="container">
+    <% @blogs.each do |b| %>
+      <div class="blogs-index-item">
+        <%= link_to(b.content, "/blogs/#{b.id}") %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<!--個人のブログ一覧-->

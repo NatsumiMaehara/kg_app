@@ -1,0 +1,2 @@
+class Eventpic < ApplicationRecord
+end
