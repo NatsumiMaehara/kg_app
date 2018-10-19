@@ -4,30 +4,33 @@ class FriendsController < ApplicationController
   end
   
   def create
-    logger.debug("------------------------friend controller params user_id = #{params[:id]}")
+    logger.debug("------------------------friend controller params user_id =")
       
-    @friend = Friend.new(follower_id: @current_user.id,
-                         followed_id: params[:id],
+    @friend = Friend.new(follower: @current_user.id,
+                         followed: params[:id]
                         )
     if  @friend.save
       flash[:notice] = "友達申請出しました"
-      redirect_to("/users/#{@user.id}")
+      redirect_to("/users/#{params[:id]}")
     else
-      render("users/#{@user.id}")
+      render("users/#{params[:id]}")
     end
   end
   
   
   def accept
     logger.debug("------------------------accept params user_id = #{params[:id]}")
+    @friend = Friend.new(follower: @current_user.id,
+                         followed: params[:id]
+                        )
+    if  @friend.save
+      flash[:notice] = "友達になりました"
+      redirect_to("/users/#{params[:id]}")
+    else
+      render("users/#{params[:id]}")
+    end
   end
-  
-  def request
-    # logger.debug("------------------------request params user_id")
-    redirect_to("/users/index")
-
-  end  
-  
+ 
   def approval
   end
   

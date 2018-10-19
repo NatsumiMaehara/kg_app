@@ -6,16 +6,20 @@ class BlogsController < ApplicationController
   end
   
   def index
-    logger.debug("---------------------params[:id] = #{params[:id]} ")
     @blogs = Blog.where(user_id: params[:id])
+    @user_id = params[:id]
+     logger.debug(@blogs.inspect)
   end
-    
+  
   def show
     # urlの末尾の数字がparams[:id]です
-    @blog = Blog.find_by(id: params[:id])
+   if @blog = Blog.find_by(id: params[:id])
     # 上のblogの１レコード内のuser_idのuserが@userです
     @user = @blog.user
     @comments = Comment.where(blog_id: @blog.id)
+   else
+     render("/blogs/index")
+   end
   end
   
   def new
@@ -27,7 +31,7 @@ class BlogsController < ApplicationController
       user_id: @current_user.id
       )
     @blog.save
-    redirect_to("/blogs/blogsindex")
+    redirect_to("/blogs/index")
   end
   
   
@@ -47,13 +51,6 @@ class BlogsController < ApplicationController
     # タイトルの編集が入ってない
   end
   
-  
-  
-  
   def draftindex
   end
-  
 end
-
-  # 0:公開
-  # 9:下書き

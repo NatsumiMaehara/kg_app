@@ -1,8 +1,14 @@
 <div class="main blogs-index">
   <div class="container">
-    <% @blogs.each do |b| %>
+    <% if @blogs %>
+       <% @blogs.each do |b| %>
       <div class="blogs-index-item">
         <%= link_to(b.content, "/blogs/#{b.id}") %>
+        <% end %>
+     <% else %>
+     <%= "記事はまだありません" %>
+     
+      <%= link_to("プロフィールへ", "/users/#{@user_id}") %>
       </div>
     <% end %>
   </div>

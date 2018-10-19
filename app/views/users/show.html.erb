@@ -8,21 +8,21 @@
         <%= link_to("編集", "/users/#{@user.id}/edit") %>
       <% end %>
     </div>
-    
-    <% if Friend.find_by(follower: @current_user.id, followed: @user.id) %>
-     <% if Friend.find_by(follower: @user.id, followed: @current_user.id) %>
-      <%= "もうお友達" %>
-     <% else %>
-      <%= "承認待ち" %>
-     <% end %>
-    <% else %>
-      <% if Friend.find_by(follower: @user.id, followed: @current_user.id) %>
-       <%= link_to("承認する", "/friends/#{@user.id}/accept") %>
-      <% else %>
-       <%= link_to("申請する", "/friends/#{@user.id}/request") %>
-      <% end %>
+    <% if @user.id != @current_user.id %>
+        <% if Friend.find_by(follower: @current_user.id, followed: @user.id) %>
+         <% if Friend.find_by(follower: @user.id, followed: @current_user.id) %>
+          <%= "もうお友達" %>
+         <% else %>
+          <%= "承認待ち" %>
+         <% end %>
+        <% else %>
+          <% if Friend.find_by(follower: @user.id, followed: @current_user.id) %>
+           <%= link_to("承認する", "/friends/#{@user.id}/accept", :method => "post") %>
+          <% else %>
+           <%= link_to("申請する", "/friends/#{@user.id}/create", :method => "post") %>
+          <% end %>
+         <% end %>
     <% end %>
-   
     
     <%= link_to("友達一覧へ", "/friends/#{@user.id}/index") %>
 
