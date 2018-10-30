@@ -2,21 +2,24 @@
    <div class="container">
        <div class="messages">
           <div class="container">
-              <% if @current_user_messages %>
-                  <div class="current_user_messages_item">
-                  <%= @current_user_messages.message %>
+             <% @chats.each do |chat| %>
+               <% if chat.sender_id == @current_user.id %>
+                 <div class="right" style="text-align: right;">
+                    <%= chat.message %>
+                 </div>
+               <% else %>
+                  <div class="left" style="text-align: left;">
+                    <%= chat.message %>
                   </div>
-                  <div class="friend_messages_item">
-              <% else %>
-                  <%=  @friend_massages.message %>
-                  </div>
+               <% end %>
               <% end %>
           </div>
        </div>
      <%= form_tag("/chats/create") do %>
+            <input type="hidden" name="receiver_id" value="<%= @friend_id %>" >
          <div class="form">
              <div class="form_body">
-                <textarea name="content"></textarea>
+                <textarea name="message"></textarea>
                 <input type="submit" value="送信">
              </div>
          </div>
