@@ -1,3 +1,49 @@
+<div class="main friends_index">
+    <div class="container">
+      <div class="both_friends">
+        <div class="friends_title">
+              <h2>友達一覧</h2>
+        </div>
+         <% if @both_friends  %> 
+           <% @both_friends.each do |b_friend|  %>
+             <div class= "both_friends_index_item">
+               <%= link_to(b_friend.followed,"/users/#{b_friend.followed}") %>
+              <% end %>
+             <% else %>
+              <%="友達はまだいません" %>
+         <% end %>
+           </div>
+      </div>
+    　<div class="req_friends">
+        <div class="friends_title">
+              <h2>友達申請中！</h2>
+        </div>
+         <% if @req_friends  %> 
+           <% @req_friends.each do |r_friend|  %>
+             <div class= "req_friends_index_item">
+               <%= link_to(r_friend.followed,"/users/#{r_friend.followed}") %>
+              <% end %>
+             <% else %>
+              <%="今はいません" %>
+         <% end %>
+           </div>
+      </div>
+      <div class="wait_friends">
+        <div class="friends_title">
+              <h2>あなたの承認待ち</h2>
+        </div>
+         <% if @wait_friends  %> 
+           <% @wait_friends.each do |w_friend|  %>
+             <div class= "wait_friends_index_item">
+               <%= link_to(w_friend.follower,"/users/#{w_friend.follower}") %>
+              <% end %>
+             <% else %>
+              <%="今はいません" %>
+         <% end %>
+           </div>
+      </div>
+    </div>         
+</div
 
 
 
@@ -10,5 +56,4 @@
 
 
 
-
-友達一覧
+<!--友達一覧-->

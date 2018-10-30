@@ -19,7 +19,8 @@ Rails.application.routes.draw do
   
   # Chats
   get 'chats/:id/index' => 'chats#index'
-  get 'chats/:id/show' => 'chats#show'
+  get 'chats/:id' => 'chats#show'
+  post "chats/create" => "chats#create"
   
   
   # Comments

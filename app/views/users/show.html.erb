@@ -1,7 +1,6 @@
 <div class="main user-show">
   <div class="container">
     <div class="user">
-     
       <h2><%= @user.nickname %></h2>
       <p><%= @user.email %></p>
       <% if @user.id == @current_user.id %>
@@ -12,6 +11,7 @@
         <% if Friend.find_by(follower: @current_user.id, followed: @user.id) %>
          <% if Friend.find_by(follower: @user.id, followed: @current_user.id) %>
           <%= "もうお友達" %>
+          <%= link_to("チャットするよ", "/chats/#{@user.id}") %>
          <% else %>
           <%= "承認待ち" %>
          <% end %>

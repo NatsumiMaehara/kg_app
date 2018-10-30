@@ -1,0 +1,25 @@
+<div class="chats_show">
+   <div class="container">
+       <div class="messages">
+          <div class="container">
+              <% if @current_user_messages %>
+                  <div class="current_user_messages_item">
+                  <%= @current_user_messages.message %>
+                  </div>
+                  <div class="friend_messages_item">
+              <% else %>
+                  <%=  @friend_massages.message %>
+                  </div>
+              <% end %>
+          </div>
+       </div>
+     <%= form_tag("/chats/create") do %>
+         <div class="form">
+             <div class="form_body">
+                <textarea name="content"></textarea>
+                <input type="submit" value="送信">
+             </div>
+         </div>
+      <% end %>
+   </div> 
+</div>
