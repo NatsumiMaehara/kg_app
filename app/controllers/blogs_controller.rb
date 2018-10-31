@@ -27,6 +27,7 @@ class BlogsController < ApplicationController
   
   def create
     @blog = Blog.new(
+      title: params[:title],
       content: params[:content],
       user_id: @current_user.id
       )
@@ -41,7 +42,10 @@ class BlogsController < ApplicationController
   
   def update
     @blog = Blog.find_by(id: params[:id])
-    @blog.content = params[:content]
+    @blog.update(
+      title: params[:title],
+      content: params[:content]
+      )
     if @blog.save
       flash[:notice] = "記事を編集しました"
       redirect_to("/blogs/index")

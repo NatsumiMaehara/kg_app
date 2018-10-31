@@ -77,9 +77,12 @@ Rails.application.routes.draw do
   get "blogs/new" => "blogs#new"
   get "blogs/:id" => "blogs#show"
   post "blogs/create" => "blogs#create"
+  get "blogs/:id/edit" => "blogs#edit"
+  post "blogs/:id/update" => "blogs#update"
   get "blogs/draftindex" => "blogs#draftindex"
   get "blogs/index" => "blogs#index"
   # ユーザー個人のブログ一覧
+  
 
 
 end

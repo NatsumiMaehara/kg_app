@@ -6,9 +6,11 @@
                <% if chat.sender_id == @current_user.id %>
                  <div class="right" style="text-align: right;">
                     <%= chat.message %>
+                    <%= User.find(chat.sender_id).nickname %>
                  </div>
                <% else %>
                   <div class="left" style="text-align: left;">
+                    <%= User.find(chat.sender_id).nickname %>
                     <%= chat.message %>
                   </div>
                <% end %>

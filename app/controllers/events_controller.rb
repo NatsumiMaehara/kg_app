@@ -12,7 +12,13 @@ class EventsController < ApplicationController
   end
   
   def create
-    @event = Event.new(content:params[:content])
+    @event = Event.new(title: params[:title],
+                       content: params[:content],
+                       target: params[:target],
+                       event_date: params[:event_date],
+                       event_start: params[:event_start],
+                       place: params[:place]
+                       )
     @event.save
     redirect_to("/events/index")
   end

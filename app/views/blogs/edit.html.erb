@@ -1,0 +1,20 @@
+<div class="main blogs-new">
+  <div class="container">
+    <h1 class="form-heading">編集する</h1>
+     <%= form_tag("/blogs/#{@blog.id}/update") do %>
+       <div class="form">
+         <div class="form-body">
+            <div class="form-title">
+              <p>タイトル</p>
+              <input type="text" name="title"<%= @blog.title %> > 
+            </div>
+            <div class="form-content">
+              <p>記事</p>
+              <textarea name="content"><%= @blog.content %></textarea>
+           </div>
+           <input type="submit" value="保存">
+         </div>
+       </div>
+     <% end %>
+  </div>
+</div>

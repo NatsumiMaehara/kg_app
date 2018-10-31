@@ -14,6 +14,12 @@
         <%= @blog.created_at %>
       </div>
     </div>
+    <% if @blog.user_id == @current_user.id %>
+        <div class="blog-menus">
+          <%= link_to("編集", "/blogs/#{@blog.id}/edit") %>
+          <%= link_to("削除", "/blogs/#{@blog.id}/destroy", {method: "post"}) %>
+        </div>
+      <% end %>
     <div class="comment-output">
       <% @comments.each do |comment| %>
       <%= comment.user_id %>

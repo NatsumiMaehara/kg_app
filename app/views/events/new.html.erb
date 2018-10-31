@@ -4,10 +4,35 @@
     <%= form_tag("/events/create") do %>
     <div class="form">
       <div class="form-body">
-        <textarea name="content"></textarea>
+          <div class="form-title">
+               <p>イベント名</p>
+               <input type="string" name="title">
+          </div>
+          <div class="form-content">
+               <p>内容</p>
+               <textarea name="content"></textarea>
+          </div>
+          <div class="form-target">
+               <p>対象</p>
+               <textarea name="target"></textarea>
+          </div>
+          <div class="form-date">
+              <p>日程</p>
+               <input type="datetime" name="event_date">
+          </div>
+          <div class="form-start">
+              <p>開始時間</p>
+               <input type="datetime" name="event_start">
+          </div>
+          <div class="form-place">
+              <p>料金</p>
+               <input type="text" name="place">
+          </div>
         <input type="submit" value="公開">
       </div>
      </div>
     <% end %>
   </div>
 </div>
+
+
