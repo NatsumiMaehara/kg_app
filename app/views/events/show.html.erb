@@ -1,12 +1,40 @@
 <div class="main events-show">
   <div class="container">
     <div class="events-show-item">
-      <p>
-        <%= @events.content %>
-      </p>
-       <div class="event-time">
-        <%= @events.created_at %>
-      </div>
+       <div class="eventologist">
+          <p>主催者</p>
+          <%= @user.nickname %>
+       </div>
+       <div class="events-titlet">
+          <p>タイトル</p>
+          <%= @events.title %>
+       </div>
+       <div class="events-content">
+          <p>イベント内容</p>
+          <%= @events.content %>
+       </div>
+       <div class="event-date">
+          <p>日にち</p>
+        <%= @events.event_date %>
+       </div>
+       <div class="event-start">
+          <p>イベント開始時間</p>
+        <%= @events.event_start %>
+       </div>
+       <div class="event-place">
+          <p>料金</p>
+        <%= @events.place %>
+       </div>
+       <div class="event-target">
+          <p>対象者</p>
+        <%= @events.target %>
+       </div>
+       <% if @user.id == @current_user.id %>
+       <div class="event-menus">
+         <%= link_to("編集","/event/#{@events.id}/edit") %>
+         <%= link_to("削除","/event/#{@events.id}/destroy", {method: "post"}) %>
+        <% end %>
+       </div>
     </div>
   </div>
 </div>

@@ -2,17 +2,15 @@
   <div class="container">
      <h1 class="events-hedding">イベント情報</h1>
       <% if @current_user %>
-      　<ul class="events-menus">
-     　     <li>
+        <ul class="events-menus">
+           <p>
              <%= link_to("イベントを作成する", "/events/new") %>
-           </li>
-     　  </ul>
-     <% else %>
-       <% @events.each do |e| %>
+           </p>
+     <% end %>
+       <% @events.each do |event| %>
          <div class="events-index-item">
-         <%= link_to(e.content, "/events/#{e.id}") %>
+          <%= link_to(event.title, "/events/#{event.id}") %>
          </div>
        <% end %>
-    <% end %>
   </div>
 </div>

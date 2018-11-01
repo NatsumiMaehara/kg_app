@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_25_113927) do
+ActiveRecord::Schema.define(version: 2018_11_01_132200) do
 
   create_table "blogpics", force: :cascade do |t|
     t.integer "blog_id"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 2018_10_25_113927) do
     t.text "place"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "user_id"
   end
 
   create_table "favorites", force: :cascade do |t|

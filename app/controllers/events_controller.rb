@@ -5,6 +5,7 @@ class EventsController < ApplicationController
   
   def show
     @events = Event.find_by(id: params[:id])
+    @user = User.find_by(id: @events.user_id)
   end
   
   
@@ -17,7 +18,8 @@ class EventsController < ApplicationController
                        target: params[:target],
                        event_date: params[:event_date],
                        event_start: params[:event_start],
-                       place: params[:place]
+                       place: params[:place],
+                       user_id: @current_user.id
                        )
     @event.save
     redirect_to("/events/index")
