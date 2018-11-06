@@ -1,7 +1,7 @@
 <div class="main chats-index">
    <div class="container">
-       <% @friends.each_value do |value| %>
-          <%= p "#{value}" %>
-       <% end %>
+       <% @chat_message.each do |chat| %>
+          <%= link_to("#{chat[0]}---#{chat[1]}", "chats/#{chat[0]}") %><br>
+      <% end %>
    </div>
 </div>
