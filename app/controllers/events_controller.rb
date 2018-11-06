@@ -29,10 +29,23 @@ class EventsController < ApplicationController
     @event = Event.find_by(id: params[:id])
   end
   
+  
   def update
    @event = Event.find_by(id: params[:id])
-   @event.title = params[:title]
-   @event.content = params[:content]
+   @event.update(
+                 title: params[:title],
+                 content: params[:content],
+                 target: params[:target],
+                 event_date: params[:event_date],
+                 event_start: params[:event_start],
+                 place: params[:place]
+                 )
+     if @event.save
+        redirect_to("/events/index")
+     else
+        render("event/edit")
+     end 
+  
     
   #   if params[:image]
   #     @user.icon = "#{@user.id}.jpg"
@@ -46,6 +59,13 @@ class EventsController < ApplicationController
   #   else
   #     render("users/edit")
   #   end 
+  end
+  
+  def destroy
+    @event = Event.find_by(id: params[:id])
+   if  @event.destroy
+     redirect_to("/events/index")
+   end
   end
 
   

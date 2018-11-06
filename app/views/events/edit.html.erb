@@ -1,0 +1,38 @@
+<div class="main events-new">
+  <div class="container">
+    <h1 class="form-heading">イベントを編集</h1>
+    <%= form_tag("/events/#{@event.id}/update") do %>
+    <div class="form">
+      <div class="form-body">
+          <div class="form-title">
+               <p>イベント名</p>
+               <textarea name="title"><%= @event.title %></textarea> 
+          </div>
+          <div class="form-content">
+               <p>内容</p>
+               <textarea name="content"><%= @event.content %></textarea>
+          </div>
+          <div class="form-target">
+               <p>対象</p>
+               <textarea name="target"><%= @event.target %></textarea> 
+          </div>
+          <div class="form-date">
+              <p>日程</p>
+               <textarea name="event_date"><%= @event.event_date %></textarea> 
+          </div>
+          <div class="form-start">
+              <p>開始時間</p>
+               <textarea name="event_start"><%= @event.event_start %></textarea> 
+          </div>
+          <div class="form-place">
+              <p>料金</p>
+               <textarea name="place"><%= @event.place %></textarea> 
+          </div>
+        <input type="submit" value="公開">
+      </div>
+     </div>
+    <% end %>
+  </div>
+</div>
+
+

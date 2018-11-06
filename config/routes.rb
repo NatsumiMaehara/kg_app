@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   
   # Recommendspots
   get 'recommendspots/index' => 'recommendspots#index'
-  
+  get "recommendspots/new" => "recommendspots#new"
+  post "recommendspots/create" => "recommendspots#create"
   
   # Contacts
   get 'contacts/new' => "contacts#new"
@@ -41,13 +42,13 @@ Rails.application.routes.draw do
   
   
   # Events
-  post "events/:id/update" => "events#update"
-  get "events/:id/edit" => "events#edit"
   get "events/index" => "events#index"
   get "events/new" => "events#new"
   get "events/:id" => "events#show"
   post "events/create" => "events#create"
-  
+  get  "events/:id/edit" => "events#edit"
+  post "events/:id/update" => "events#update"
+  post "events/:id/destroy" => "events#destroy"
   # Users
   post "users/:id/update" => "users#update"
   get "users/:id/edit" => "users#edit"
@@ -80,7 +81,7 @@ Rails.application.routes.draw do
   get "blogs/:id/edit" => "blogs#edit"
   post "blogs/:id/update" => "blogs#update"
   get "blogs/draftindex" => "blogs#draftindex"
-  get "blogs/index" => "blogs#index"
+  get "blogs/:id/index" => "blogs#index"
   # ユーザー個人のブログ一覧
   
 

@@ -1,0 +1,24 @@
+<div class="main recommendspots-new">
+    <div class="container">
+        <h1 class="form-heading">おすすめスポットを投稿する</h1>
+        <%= form_tag("/recommendspots/create") do %>
+          <div class="form">
+              <div class="form-body">
+                  <div class="form-spot-name">
+                     <p>おすすめの場所</p>
+                     <textarea name="spot_name"></textarea> 
+                  </div>
+                  <div class="form-detail">
+                      <p>どんな場所？</p>
+                     <textarea name="detail"></textarea>
+                  </div>
+                  <div class="form-user-comment">
+                      <p>コメント</p>
+                      <textarea name="user_comment"></textarea>
+                  </div>
+                  <input type="submit" value="投稿する">
+              </div>
+          </div>
+        <% end %>
+    </div>
+</div>

@@ -29,10 +29,15 @@ class BlogsController < ApplicationController
     @blog = Blog.new(
       title: params[:title],
       content: params[:content],
-      user_id: @current_user.id
+      user_id: @current_user.id,
+      status: params[:status]
       )
     @blog.save
-    redirect_to("/blogs/index")
+     if @blog.find_by(status: 9)
+          redirect_to("/blogs/draftindex")
+     else
+          redirect_to("/blogs/index")
+     end
   end
   
   

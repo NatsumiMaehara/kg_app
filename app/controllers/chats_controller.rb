@@ -24,4 +24,12 @@ class ChatsController < ApplicationController
        
   end
   
+  def index
+    @chats = Chat.where("(sender_id = ? ) OR (receiver_id = ?)",
+                            @current_user.id,@current_user.id)
+    @friends = @chats.find_all {|k,v| v !=  @current_user.id }
+    @friend = @friends.to_h
+
+  end
+  
 end

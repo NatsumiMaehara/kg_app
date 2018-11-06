@@ -31,8 +31,8 @@
        </div>
        <% if @user.id == @current_user.id %>
        <div class="event-menus">
-         <%= link_to("編集","/event/#{@events.id}/edit") %>
-         <%= link_to("削除","/event/#{@events.id}/destroy", {method: "post"}) %>
+         <%= link_to("編集","/events/#{@events.id}/edit") %>
+         <%= link_to("削除","/events/#{@events.id}/destroy", {method: "post"}) %>
         <% end %>
        </div>
     </div>
