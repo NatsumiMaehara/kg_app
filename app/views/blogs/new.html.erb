@@ -12,8 +12,11 @@
               <p>記事</p>  
               <textarea name="content"></textarea>
             </div>
-             <input type="submit" value="公開" name="status:0">
-             <input type="submit" value="下書き" name="status:9">
+            <div class="blog-status">
+              <input type="radio" name="status" value="9" checked="checked">下書き
+              <input type="radio" name="status" value="0">公開
+            </div>
+          <input type="submit" value="投稿する" name="submit">
           </div>
         </div>
     <% end %>

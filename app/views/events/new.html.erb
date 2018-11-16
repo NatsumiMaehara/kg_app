@@ -1,6 +1,12 @@
 <div class="main events-new">
   <div class="container">
     <h1 class="form-heading">イベントを作成</h1>
+     <div class="pic-form">
+       <%= form_tag("/event/piccreate", {multipart: true}) do %> 
+          <p>画像</p>
+          <input name="pic" type="file">
+       <% end %>
+     </div>
     <%= form_tag("/events/create") do %>
     <div class="form">
       <div class="form-body">

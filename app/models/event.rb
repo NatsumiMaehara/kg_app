@@ -5,4 +5,6 @@ class Event < ApplicationRecord
     end
 
 
+   has_many :eventpics
+
 end

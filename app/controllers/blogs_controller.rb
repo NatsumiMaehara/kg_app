@@ -6,9 +6,13 @@ class BlogsController < ApplicationController
   end
   
   def index
-    @blogs = Blog.where(user_id: params[:id])
-    @user_id = params[:id]
-     logger.debug(@blogs.inspect)
+    logger.debug("-------------------- index fff #{params[:id]}")
+    @blogs = Blog.where(status: 0).where(user_id: params[:id])
+  end
+  
+  def draftindex
+    logger.debug("-------------------- draftindex #{@current_user.id}")
+    @blogs = Blog.where(status: 9).where(user_id: params[:id])
   end
   
   def show
@@ -26,18 +30,24 @@ class BlogsController < ApplicationController
   end
   
   def create
+    logger.debug("======================== blog create @current_user.id = #{@current_user.id}")
     @blog = Blog.new(
       title: params[:title],
       content: params[:content],
       user_id: @current_user.id,
-      status: params[:status]
+      status: params[:status].to_i
       )
-    @blog.save
-     if @blog.find_by(status: 9)
-          redirect_to("/blogs/draftindex")
-     else
-          redirect_to("/blogs/index")
-     end
+      
+    if @blog.save
+       if @blog.status == 9
+    logger.debug("======================== blogs_draftindex_path")
+            redirect_to("/blogs/#{@current_user.id}/draftindex")
+       else
+            redirect_to("/blogs/#{@current_user.id}/index")
+       end
+    else
+      render("blogs/new")
+    end 
   end
   
   
@@ -59,7 +69,5 @@ class BlogsController < ApplicationController
     end
     # タイトルの編集が入ってない
   end
-  
-  def draftindex
-  end
+
 end

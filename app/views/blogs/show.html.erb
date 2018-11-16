@@ -1,4 +1,4 @@
-<div class="main blogss-show">
+<div class="main blogs-show">
   <div class="container">
     <div class="blogs-show-item">
       <p>
@@ -32,8 +32,14 @@
           <input type="text" name="comment">
           <input type="hidden" name="blog_id" value="<%= @blog.user_id %>" >
           <input type="submit" value="コメントする">
-          
         <% end %>
     </div>
+    <div class="favorites">
+      <% if !Favorite.find_by(user_id: @current_user.id,blog_id: @blog.id) %>
+        <%= link_to "お気に入りにする", "/favorites/#{@blog.id}/create", method: :post %>
+      <% else %>
+        <%= "お気に入りに登録済みでっせ" %>
+      <% end %>
+    </div>
   </div>
-</div>
+ </div>

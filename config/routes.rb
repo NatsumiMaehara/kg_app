@@ -14,14 +14,17 @@ Rails.application.routes.draw do
   
   
   # Favorites
+  # Favorites
   get 'favorites/:id/index' => 'favorites#index'
-  
+  post 'favorites/:id/create' => 'favorites#create'
+  post "favorites/:id/destroy" => "favorites#destroy"
   
   
   # Chats
   get 'chats/:id/index' => 'chats#index'
-  get 'chats/:id' => 'chats#show'
-  post "chats/create" => "chats#create"
+  resources :chats, :only => [:show, :create]
+  # get 'chats/:id' => 'chats#show'
+  # post "chats/create" => "chats#create"
   
   
   # Comments
@@ -49,6 +52,7 @@ Rails.application.routes.draw do
   get  "events/:id/edit" => "events#edit"
   post "events/:id/update" => "events#update"
   post "events/:id/destroy" => "events#destroy"
+  post "events/:id/piccreate" => "events#piccreate"
   # Users
   post "users/:id/update" => "users#update"
   get "users/:id/edit" => "users#edit"
@@ -60,7 +64,7 @@ Rails.application.routes.draw do
   post "logout" => "users#logout"
   get "login" => "users#login_form"
   get "users/:id/likes" => "users#likes"
-  
+  get "users/:id/setupmenu" => "users#setupmenu"
   get "mail_send" => "users/mail_send"
   
   
@@ -72,7 +76,7 @@ Rails.application.routes.draw do
   get "info" => "home#info"
 
 
-  # Blogs
+ # Blogs
   get 'blogs/blogsindex' => 'blogs#blogsindex' 
   # ユーザー全体のブログ一覧
   get "blogs/new" => "blogs#new"
@@ -80,7 +84,7 @@ Rails.application.routes.draw do
   post "blogs/create" => "blogs#create"
   get "blogs/:id/edit" => "blogs#edit"
   post "blogs/:id/update" => "blogs#update"
-  get "blogs/draftindex" => "blogs#draftindex"
+  get "blogs/:id/draftindex" => "blogs#draftindex"
   get "blogs/:id/index" => "blogs#index"
   # ユーザー個人のブログ一覧
   

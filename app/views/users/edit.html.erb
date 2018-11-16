@@ -12,7 +12,7 @@
       
         <%= form_tag("/users/#{@user.id}/update", {multipart: true}) do %>
           <p>ユーザー名</p>
-          <input name="name" value="<%= @user.name %>">
+          <input name="name" value="<%= @user.nickname %>">
           <p>画像</p>
           <input name="image" type="file">
           <p>メールアドレス</p>

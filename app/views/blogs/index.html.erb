@@ -1,12 +1,13 @@
 <div class="main blogs-index">
   <div class="container">
-    <% if @blogs %>
+    <% if @blogs.present? %>
        <% @blogs.each do |b| %>
       <div class="blogs-index-item">
+        <%= b.user_id %><%= "さんのブログ一覧" %>
         <%= link_to(b.content, "/blogs/#{b.id}") %>
         <% end %>
      <% else %>
-     <%= "記事はまだありません" %>
+        <%= "記事はまだありません" %>
      
       <%= link_to("プロフィールへ", "/users/#{@user_id}") %>
       </div>

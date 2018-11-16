@@ -6,7 +6,8 @@ class Blog < ApplicationRecord
     return User.find_by(id: self.user_id)
   end
   
-  belongs_to :users
+  belongs_to :user
+  has_many :favorites
   
   
 end

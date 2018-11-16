@@ -1,5 +1,16 @@
-<div class="main draftindex">
-    <div class="container">
-        
-    </div>
+<div class="main blogs-draftindex">
+  <div class="container">
+    <h1>下書き記事一覧</h1>
+    <% if @blogs.present? %>
+       <% @blogs.each do |b| %>
+      <div class="blogs-draftindex-item">
+        <%= link_to(b.content, "/blogs/#{b.id}") %>
+        <% end %>
+     <% else %>
+        <%= "記事はまだありません" %>
+     
+      <%= link_to("プロフィールへ", "/users/#{@user_id}") %>
+      </div>
+    <% end %>
+  </div>
 </div>

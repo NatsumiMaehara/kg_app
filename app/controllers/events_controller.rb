@@ -46,6 +46,14 @@ class EventsController < ApplicationController
         render("event/edit")
      end 
   
+  
+  def piccreate
+    @event = Event.find_by(id: params[:id])
+    @eventpic = Eventpic.new(
+                             event_id: @event.id,
+                             pic: params[:pic]
+                             )
+  end
     
   #   if params[:image]
   #     @user.icon = "#{@user.id}.jpg"

@@ -7,4 +7,6 @@ class User < ApplicationRecord
      validates :password,{presence: true}
      
      has_many :friends, dependent: :destroy
+     has_many :favorites, dependent: :destroy
+
 end

@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     
   def update
     @user = User.find_by(id: params[:id])
-    @user.name = params[:name]
+    @user.nickname = params[:name]
     @user.email = params[:email]
     
     if params[:image]
@@ -88,8 +88,11 @@ class UsersController < ApplicationController
       flash[:notice] = "権限がありません"
       redirect_to("/posts/index")
     end
-  end
+    end 
   
+  def setupmenu
+    @user = User.find_by(id: params[:id])
+  end
   
   
 end

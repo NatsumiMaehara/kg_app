@@ -1,2 +1,23 @@
-<h1>Contacts#new</h1>
-<p>Find me in app/views/contacts/new.html.erb</p>
+<div class="main contacts-new">
+    <div class="container">
+      <%= form_tag("/contacts/new") do %>
+      <div class="form">
+            <div class="form-body">
+                <div class="form-name">
+                    <p>お名前</p>
+                    <textarea name="name"></textarea>
+                </div>
+                <div class="form-email">
+                    <p>ご連絡先</p>
+                    <textarea name="email"></textarea>
+                </div>
+                <div class="form-content">
+                    <p>お問い合わせ内容</p>
+                    <textarea name="content"></textarea>
+                </div>
+                <input type="submit" value="送信">
+            </div>
+        </div>
+        <% end %>
+    </div>
+</div>

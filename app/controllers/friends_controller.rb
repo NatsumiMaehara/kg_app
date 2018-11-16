@@ -18,7 +18,7 @@ class FriendsController < ApplicationController
             
          else
             @req_friends.push(friend)
-          end
+         end
         end
     logger.debug("====================== @both_friends = #{@both_friends[0].followed}")
     logger.debug("====================== @both_friends = #{@both_friends[1].followed}")
