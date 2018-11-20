@@ -1,5 +1,13 @@
 class CommentsController < ApplicationController
   def index
+    @comments = Comment.where(user_id: @current_user.id)
+    
+    if @comments.present?
+       @commentblogs = Blog.where(id: @comments.blog_id)
+    else
+      render("/comments/index")
+    end
+    
   end
   
   def create

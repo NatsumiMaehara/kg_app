@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   
   
   # Comments
-  get 'comments/index' => 'comments#index'
+  get 'comments/:id/index' => 'comments#index'
   post 'comments/create' => 'comments#create'
   get "send" => "comments#send"
   

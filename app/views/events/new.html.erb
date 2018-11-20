@@ -1,39 +1,39 @@
 <div class="main events-new">
   <div class="container">
     <h1 class="form-heading">イベントを作成</h1>
-     <div class="pic-form">
-       <%= form_tag("/event/piccreate", {multipart: true}) do %> 
-          <p>画像</p>
-          <input name="pic" type="file">
-       <% end %>
-     </div>
     <%= form_tag("/events/create") do %>
     <div class="form">
       <div class="form-body">
           <div class="form-title">
-               <p>イベント名</p>
-               <textarea name="title"></textarea>
+               <p>イベント名*</p>
+               <input type="text" name="title" required>
           </div>
           <div class="form-content">
-               <p>内容</p>
-               <textarea name="content"></textarea>
+               <p>内容*</p>
+               <textarea name="content" rows="4" cols="40" required></textarea>
           </div>
           <div class="form-target">
-               <p>対象</p>
-               <textarea name="target"></textarea>
+               <p>対象*</p>
+               <input type="text" name="target" required>
           </div>
           <div class="form-date">
-              <p>日程</p>
-               <textarea name="event_date"></textarea>
-          </div>
-          <div class="form-start">
-              <p>開始時間</p>
-               <textarea name="event_start"></textarea>
+              <p>日程*</p>
+              <input type="date" name="event_date" required>
           </div>
           <div class="form-place">
-              <p>料金</p>
-               <textarea name="place"></textarea>
+              <p>開催場所*</p>
+               <input type="text" name="place"  required>
           </div>
+          <div class="form-start">
+              <p>開始時間*</p>
+              <input type="time" name="event_start" required>
+          </div>
+          <div class="form-price">
+              <p>料金*</p>
+               <input type="number" name="price" min="0" required>円
+          </div>
+               <p>画像</p>
+               <input name="pic" type="file">
         <input type="submit" value="公開">
       </div>
      </div>
