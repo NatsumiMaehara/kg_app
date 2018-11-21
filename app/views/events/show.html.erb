@@ -33,6 +33,17 @@
           <p>対象者</p>
         <%= @events.target %>
        </div>
+         <% unless @event_pics.pic.empty? %>
+            <div class="event_pics">
+              <ul>
+                <% @event_pics.pic.each do |p| %>
+                  <li id="pic_<%= p.id %>">
+                    <%= image_tag p.image.url %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+         <% end %>
        <% if @user.id == @current_user.id %>
        <div class="event-menus">
          <%= link_to("編集","/events/#{@events.id}/edit") %>

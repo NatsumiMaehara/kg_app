@@ -6,6 +6,8 @@ class EventsController < ApplicationController
   def show
     @events = Event.find_by(id: params[:id])
     @user = User.find_by(id: @events.user_id)
+    @event_pics = Eventpic.where(event_id: @events.id)
+    # logger.debug(@event_pics.inspect)
   end
   
   
@@ -17,10 +19,10 @@ class EventsController < ApplicationController
     require 'fileutils'
     # logger.debug("--------------------------file_name=#{params[:post][:file_name]}")
     
-    @post = Post.new(post_params)
+    @event = Event.new(event_params)
     
-    if @post.save
-        post_id = Post.last.id
+    if @event.save
+        event_id = Event.last.id
 
       
           # 画像のアップロード対応
@@ -30,21 +32,21 @@ class EventsController < ApplicationController
              cnt = 0
              params[:images].each { |image|
              
-              @post_detail = PostDetail.new(post_detail_params)
-              @post_detail.post_id = post_id
+              @event_pics = Eventpic.new(event_pics_params)
+              @event_pics.event_id = event_id
               
               if image.inspect.include?("jpg")
-                @post_detail.file_type = "jpg"
+                @event_pics.file_type = "jpg"
               elsif image.inspect.include?("jpeg")
-                @post_detail.file_type = "jpeg"
+                @event_pics.file_type = "jpeg"
               elsif image.inspect.include?("png")
-                @post_detail.file_type = "png"
+                @event_pics.file_type = "png"
               elsif image.inspect.include?("mp4")
-                @post_detail.file_type = "mp4"
+                @event_pics.file_type = "mp4"
               elsif image.inspect.include?("mov")
-                @post_detail.file_type = "mov"
+                @event_pics.file_type = "mov"
               elsif image.inspect.include?("m4v")
-                @post_detail.file_type = "m4v"
+                @event_pics.file_type = "m4v"
               end
               
               logger.debug("--------------------------file_name= #{image.inspect.include?("jpg")}")
@@ -52,26 +54,26 @@ class EventsController < ApplicationController
               dir_path = "public/pics/#{post_id}"
               FileUtils.mkdir_p(dir_path) unless FileTest.exist?(dir_path)
               
-              @post_detail.file_name = "#{@post.id}-#{cnt+1}.#{@post_detail.file_type}"
+              @event_pics.file_name = "#{@event.id}-#{cnt+1}.#{@event_pics.file_type}"
               image = params[:images][cnt]
-              File.binwrite("public/pics/#{post_id}/#{@post_detail.file_name}", image.read)
+              File.binwrite("public/pics/#{event_id}/#{@event_pics.file_name}", image.read)
               cnt += 1
               
-              @post_detail.save
+              @event_pics.save
               save_flag = true
              }
           
               if save_flag
-                flash[:notice] = "success save detail"
-                redirect_to posts_path
+                flash[:notice] = "イベントを作成しました"
+                redirect_to events_index_path
               else 
-                render new_post_path
+                render events_new_path
               end
           end
       
       
     else
-      render new_post_path
+      render events_new_path
     end
       
   end
@@ -118,12 +120,12 @@ class EventsController < ApplicationController
   end
 
   private 
-    def post_params
+    def event_params
       params.require(:event).permit(:title, :target, :event_date, :event_start, :place, :price, :user_id, :content).merge(:user_id => @current_user.id)
     end
     
-    def post_detail_params
-      params.require(:event).permit(:file_name)
+    def event_pics_params
+      params.require(:event).permit(:pic)
     end
   
 end

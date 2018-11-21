@@ -1,40 +1,46 @@
 <div class="main events-new">
   <div class="container">
     <h1 class="form-heading">イベントを作成</h1>
-    <%= form_tag("/events/create") do %>
+    <%= form_for @event, url: events_create_path, :html => { multipart: true } do |e| %>
     <div class="form">
       <div class="form-body">
           <div class="form-title">
-               <p>イベント名*</p>
-               <input type="text" name="title" required>
+               <%= e.label :"イベント名*" %>
+               <%= e.text_field :title, :class => "event-title-form", required: true %>
           </div>
           <div class="form-content">
-               <p>内容*</p>
-               <textarea name="content" rows="4" cols="40" required></textarea>
+               <%= e.label :"内容*" %>
+               <%= e.text_area :content, :class => "event-content-form", required: true %>
           </div>
           <div class="form-target">
-               <p>対象*</p>
-               <input type="text" name="target" required>
+               <%= e.label :"対象者*" %>
+               <%= e.text_field :target, :class => "event-target-form", required: true %>
           </div>
           <div class="form-date">
-              <p>日程*</p>
-              <input type="date" name="event_date" required>
+               <%= e.label :"日程*" %>
+               <%= e.date_field :event_date, :class => "event-date-form", required: true %>
           </div>
           <div class="form-place">
-              <p>開催場所*</p>
-               <input type="text" name="place"  required>
+               <%= e.label :"開催場所*" %>
+               <%= e.text_field :place, :class => "event-place-form", required: true %>
           </div>
           <div class="form-start">
-              <p>開始時間*</p>
-              <input type="time" name="event_start" required>
+               <%= e.label :"開始時間*" %>
+               <%= e.time_field :event_start, :class => "event-start-form", required: true %>
           </div>
           <div class="form-price">
-              <p>料金*</p>
-               <input type="number" name="price" min="0" required>円
+               <%= e.label :"料金*" %>
+               <%= e.number_field :price, min:0 ,:class => "event-price-form", required: true %>円
           </div>
-               <p>画像</p>
-               <input name="pic" type="file">
-        <input type="submit" value="公開">
+          <div class="form-pic">
+               <%= e.label :"画像" %>
+               <ul>
+                 <li>ファイル複数選択：<%= file_field_tag "images[]", type: :file, multiple: true, :class => "event-pic-form" %></li>
+               </ul>
+          </div>
+          <div class="actions">
+              <%= e.submit "作成する", :class => "event-form-btn" %>
+          </div>
       </div>
      </div>
     <% end %>
