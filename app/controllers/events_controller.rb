@@ -34,6 +34,7 @@ class EventsController < ApplicationController
              
               @event_pics = Eventpic.new(event_pics_params)
               @event_pics.event_id = event_id
+              logger.debug(@event_pics.inspect)
               
               if image.inspect.include?("jpg")
                 @event_pics.file_type = "jpg"
@@ -51,12 +52,12 @@ class EventsController < ApplicationController
               
               logger.debug("--------------------------file_name= #{image.inspect.include?("jpg")}")
               
-              dir_path = "public/pics/#{post_id}"
+              dir_path = "public/eventpics/#{event_id}"
               FileUtils.mkdir_p(dir_path) unless FileTest.exist?(dir_path)
               
               @event_pics.file_name = "#{@event.id}-#{cnt+1}.#{@event_pics.file_type}"
               image = params[:images][cnt]
-              File.binwrite("public/pics/#{event_id}/#{@event_pics.file_name}", image.read)
+              File.binwrite("public/eventpics/#{event_id}/#{@event_pics.file_name}", image.read)
               cnt += 1
               
               @event_pics.save
